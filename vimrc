@@ -26,6 +26,7 @@ set incsearch
 set ignorecase
 set smartcase
 
+" TODO - how does this differ from "longest,list" only?
 " Tab completion
 set wildmode=list:longest,list:full
 set wildignore+=*.o,*.obj,.git,*.rbc,*.class,.svn,vendor/gems/*
@@ -38,6 +39,9 @@ set laststatus=2
 " This is likely a bludgeon to solve some other issue, but it works
 set noequalalways
 
+" Change the leader to ","
+let mapleader=","
+
 " NERDTree configuration
 let NERDTreeIgnore=['\.pyc$', '\.rbc$', '\~$']
 map <Leader>n :NERDTreeToggle<CR>
@@ -45,8 +49,12 @@ map <Leader>n :NERDTreeToggle<CR>
 " Command-T configuration
 let g:CommandTMaxHeight=20
 
+" Switching between active files in a buffer.
+" TODO - what's default behavior here for <leader><leader>?
+nnoremap <leader><leader> <c-^>
+
 " ZoomWin configuration
-map <Leader><Leader> :ZoomWin<CR>
+" map <Leader><Leader> :ZoomWin<CR>
 
 " CTags
 map <Leader>rt :!ctags --extra=+f -R *<CR><CR>
@@ -92,11 +100,34 @@ filetype plugin indent on
 
 " Opens an edit command with the path of the currently edited file filled in
 " Normal mode: <Leader>e
-map <Leader>e :e <C-R>=expand("%:p:h") . "/" <CR>
+" map <Leader>e :e <C-R>=expand("%:p:h") . "/" <CR>
 
-" Opens a tab edit command with the path of the currently edited file filled in
-" Normal mode: <Leader>t
-map <Leader>te :tabe <C-R>=expand("%:p:h") . "/" <CR>
+cnoremap %% <C-R>=expand('%:h').'/'<CR>
+map <leader>e :edit %%
+map <leader>v :view %%
+" open file in a tab
+map <Leader>te :tabe %%
+
+" Open files with <leader>f
+map <leader>f :CommandTFlush<CR>\|:CommandT<CR>
+" Opne files, limited to the directory of the current files, with <leader>gf
+map <leader>gf :CommandTFlush<CR>\|:CommandT %%<CR>
+
+" Rails specific keystrokes
+map <leader>gr :topleft :split config/routes.rb<CR>
+map <leader>gg :topleft 50 :split Gemfile<CR>
+
+map <leader>gv :CommandTFlush<cr>\|:CommandT app/views<cr>
+map <leader>gc :CommandTFlush<cr>\|:CommandT app/controllers<cr>
+map <leader>gm :CommandTFlush<cr>\|:CommandT app/models<cr>
+map <leader>gh :CommandTFlush<cr>\|:CommandT app/helpers<cr>
+map <leader>gl :CommandTFlush<cr>\|:CommandT lib<cr>
+map <leader>gt :CommandTFlush<cr>\|:CommandT spec<cr>
+map <leader>gf :CommandTFlush<cr>\|:CommandT features<cr>
+map <leader>ga :CommandTFlush<cr>\|:CommandT app/assets<cr>
+map <leader>gs :CommandTFlush<cr>\|:CommandT app/assets/stylesheets<cr>
+map <leader>gj :CommandTFlush<cr>\|:CommandT app/assets/javascripts<cr>
+
 
 " Inserts the path of the currently edited file into a command
 " Command mode: Ctrl+P
