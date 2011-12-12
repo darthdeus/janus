@@ -110,7 +110,8 @@ map <Leader>te :tabe %%
 
 " Open files with <leader>f
 map <leader>f :CommandTFlush<CR>\|:CommandT<CR>
-" Opne files, limited to the directory of the current files, with <leader>gf
+" Open files, limited to the directory of the current files, with <leader>gf
+map <leader>F :CommandTFlush<CR>\|:CommandT %%<CR>
 map <leader>gf :CommandTFlush<CR>\|:CommandT %%<CR>
 
 " Rails specific keystrokes
@@ -169,7 +170,7 @@ set modeline
 set modelines=10
 
 " Default color scheme
-color ir_black
+color desert
 
 " Directories for swp files
 set backupdir=~/.vim/backup
@@ -191,6 +192,8 @@ set showcmd
 set guioptions-=L
 set guioptions-=r
 
+set guifont=Monaco:h11
+
 if has("gui_running")
   " Automatically resize splits when resizing MacVim window
   autocmd VimResized * wincmd =
@@ -198,7 +201,6 @@ if has("gui_running")
   :set lines=100
   :set columns=171
 
-  :setguifont=Monaco:h11
   " GRB: highlight current line"
   :set cursorline
 endif
