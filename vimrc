@@ -128,22 +128,28 @@ map <leader>ga :CommandTFlush<cr>\|:CommandT app/assets<cr>
 map <leader>gs :CommandTFlush<cr>\|:CommandT app/assets/stylesheets<cr>
 map <leader>gj :CommandTFlush<cr>\|:CommandT app/assets/javascripts<cr>
 
+" TODO - How to implement this?
+" function! RunFile()
+"   :w\|ruby%<CR>
+" endfunction
+
+" Run current file with Ruby
+nmap <leader>t :w\|ruby%<CR>
 
 " Inserts the path of the currently edited file into a command
 " Command mode: Ctrl+P
 cmap <C-P> <C-R>=expand("%:p:h") . "/" <CR>
 
-" Unimpaired configuration
-" Bubble single lines
-nmap <C-Up> [e
-nmap <C-Down> ]e
-nmap <C-k> [e
-nmap <C-j> ]e
+" For easier navigation between windows
+nmap <C-j> <C-w><C-j>
+nmap <C-k> <C-w><C-k>
+nmap <C-h> <C-w><C-h>
+nmap <C-l> <C-w><C-l>
 " Bubble multiple lines
-vmap <C-Up> [egv
-vmap <C-Down> ]egv
-vmap <C-k> [egv
-vmap <C-j> ]egv
+vmap <C-Up> <C-w><C-k>
+vmap <C-Down> <C-w><C-j>
+vmap <C-Left> <C-w><C-h>
+vmap <C-Right> <C-w><C-l>
 
 " Enable syntastic syntax checking
 let g:syntastic_enable_signs=1
@@ -163,7 +169,7 @@ set modeline
 set modelines=10
 
 " Default color scheme
-color desert
+color ir_black
 
 " Directories for swp files
 set backupdir=~/.vim/backup
@@ -181,9 +187,20 @@ runtime! macros/matchit.vim
 " Show (partial) command in the status line
 set showcmd
 
+" Remove scrollbars
+set guioptions-=L
+set guioptions-=r
+
 if has("gui_running")
   " Automatically resize splits when resizing MacVim window
   autocmd VimResized * wincmd =
+
+  :set lines=100
+  :set columns=171
+
+  :setguifont=Monaco:h11
+  " GRB: highlight current line"
+  :set cursorline
 endif
 
 " Include user's local vim config
