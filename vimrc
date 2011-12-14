@@ -3,7 +3,16 @@ if filereadable(expand("~/.vimrc.pre"))
   source ~/.vimrc.pre
 endif
 
+" Use Vim settings, rather then Vi settings (much better!).
+" This must be first, because it changes other options as a side effect.
 set nocompatible
+
+" Allow backgrounding buffers without writing them, and remember marks/undo
+" for backgrounded buffers
+set hidden
+
+" Remember more commands and search history
+set history=1000
 
 set number
 set ruler
@@ -23,13 +32,35 @@ set list listchars=tab:\ \ ,trail:·
 " Searching
 set hlsearch
 set incsearch
+" Make searches case-sensitive only if they contain upper-case characters
 set ignorecase
 set smartcase
+
+" Make tab completion for files/buffers act like bash
+set wildmenu
 
 " TODO - how does this differ from "longest,list" only?
 " Tab completion
 set wildmode=list:longest,list:full
 set wildignore+=*.o,*.obj,.git,*.rbc,*.class,.svn,vendor/gems/*
+"
+" TODO - what is the default behavior?
+" Remap the tab key to do autocompletion or indentation depending on the
+" context (from http://www.vim.org/tips/tip.php?tip_id=102)
+function! InsertTabWrapper()
+    let col = col('.') - 1
+    if !col || getline('.')[col - 1] !~ '\k'
+        return "\<tab>"
+    else
+        return "\<c-p>"
+    endif
+endfunction
+inoremap <tab> <c-r>=InsertTabWrapper()<cr>
+inoremap <s-tab> <c-n>
+
+" TODO - haha!
+" Seriously, guys. It's not like :W is bound to anything anyway.
+command! W :w
 
 " Status bar
 set laststatus=2
@@ -39,13 +70,18 @@ set laststatus=2
 " This is likely a bludgeon to solve some other issue, but it works
 set noequalalways
 
+set winwidth=84
+" We have to have a winheight bigger than we want to set winminheight. But if
+" we set winheight to be huge before winminheight, the winminheight set will
+" fail.
+set winheight=5
+set winminheight=5
+set winheight=999
+
+
 " Change the leader to ","
 let mapleader=","
-
-" NERDTree configuration
-let NERDTreeIgnore=['\.pyc$', '\.rbc$', '\~$']
-map <Leader>n :NERDTreeToggle<CR>
-
+"
 " Command-T configuration
 let g:CommandTMaxHeight=20
 
@@ -53,16 +89,17 @@ let g:CommandTMaxHeight=20
 " TODO - what's default behavior here for <leader><leader>?
 nnoremap <leader><leader> <c-^>
 
-" ZoomWin configuration
-" map <Leader><Leader> :ZoomWin<CR>
-
 " CTags
 map <Leader>rt :!ctags --extra=+f -R *<CR><CR>
 map <C-\> :tnext<CR>
 
+" TODO - what is Gundo?
 " Gundo configuration
 nmap <F5> :GundoToggle<CR>
 imap <F5> <ESC>:GundoToggle<CR>
+
+" TODO - paste?
+map <silent> <leader>y :<C-u>silent '<,'>w !pbcopy<CR>
 
 " Remember last location in file
 if has("autocmd")
@@ -135,7 +172,8 @@ map <leader>gj :CommandTFlush<cr>\|:CommandT app/assets/javascripts<cr>
 " endfunction
 
 " Run current file with Ruby
-nmap <leader>t :w\|ruby%<CR>
+" TODO - change to run specs when specs file
+" nmap <leader>t :w\|ruby%<CR>
 
 " Inserts the path of the currently edited file into a command
 " Command mode: Ctrl+P
@@ -198,12 +236,64 @@ if has("gui_running")
   " Automatically resize splits when resizing MacVim window
   autocmd VimResized * wincmd =
 
+  " TODO - change these to preferred size
+  " GRB: set window size"
   :set lines=100
   :set columns=171
 
   " GRB: highlight current line"
   :set cursorline
 endif
+
+function! RunTests(filename)
+    " Write the file and run tests for the given filename
+    :w
+    :silent !echo;echo;echo;echo;echo
+    exec ":!bundle exec rspec " . a:filename
+endfunction
+
+function! SetTestFile()
+    " Set the spec file that tests will be run for.
+    let t:grb_test_file=@%
+endfunction
+
+function! RunTestFile(...)
+    if a:0
+        let command_suffix = a:1
+    else
+        let command_suffix = ""
+    endif
+
+    " Run the tests for the previously-marked file.
+    let in_spec_file = match(expand("%"), '_spec.rb$') != -1
+    if in_spec_file
+        call SetTestFile()
+    elseif !exists("t:grb_test_file")
+        return
+    end
+    call RunTests(t:grb_test_file . command_suffix)
+endfunction
+
+function! RunNearestTest()
+    let spec_line_number = line('.')
+    call RunTestFile(":" . spec_line_number)
+endfunction
+
+
+" Run this file
+map <leader>t :call RunTestFile()<cr>
+" Run only the example under the cursor
+map <leader>T :call RunNearestTest()<cr>
+" Run all test files
+map <leader>a :call RunTests('spec')<cr>
+
+" TODO - what happens when I don't do this?
+" GRB: clear the search buffer when hitting return
+:nnoremap <CR> :nohlsearch<CR>/<BS>
+
+" TODO - remove unnecessary whitespaces?
+" TODO - what is <c-o>?
+map <leader>ws :%s/ *$//g<cr><c-o><cr>
 
 " Include user's local vim config
 if filereadable(expand("~/.vimrc.local"))
