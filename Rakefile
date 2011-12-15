@@ -137,7 +137,7 @@ vim_plugin_task "javascript",       "git://github.com/pangloss/vim-javascript.gi
 #vim_plugin_task "surround",         "git://github.com/tpope/vim-surround.git"
 #vim_plugin_task "taglist",          "git://github.com/vim-scripts/taglist.vim.git"
 #vim_plugin_task "vividchalk",       "git://github.com/tpope/vim-vividchalk.git"
-#vim_plugin_task "solarized",        "git://github.com/altercation/vim-colors-solarized.git"
+vim_plugin_task "solarized",        "git://github.com/altercation/vim-colors-solarized.git"
 #vim_plugin_task "supertab",         "git://github.com/ervandew/supertab.git"
 vim_plugin_task "cucumber",         "git://github.com/tpope/vim-cucumber.git"
 vim_plugin_task "textile",          "git://github.com/timcharper/textile.vim.git"
@@ -157,6 +157,9 @@ vim_plugin_task "vim-coffee-script","git://github.com/kchmck/vim-coffee-script.g
 # vim_plugin_task "scala",            "git://github.com/bdd/vim-scala.git"
 # vim_plugin_task "gist-vim",         "git://github.com/mattn/gist-vim.git"
 # vim_plugin_task "gundo",            "git://github.com/sjl/gundo.vim.git"
+vim_plugin_task "slim",             "git://github.com/bbommarito/vim-slim.git"
+vim_plugin_task "vim-rvm",             "git://github.com/tpope/vim-rvm.git"
+
 
 #vim_plugin_task "hammer",           "git://github.com/robgleeson/hammer.vim.git" do
 #  sh "gem install github-markup redcarpet"

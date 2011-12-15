@@ -249,7 +249,8 @@ function! RunTests(filename)
     " Write the file and run tests for the given filename
     :w
     :silent !echo;echo;echo;echo;echo
-    exec ":!bundle exec rspec " . a:filename
+"    exec ":!bundle exec rspec " . a:filename
+    exec ":!./script/test " . a:filename
 endfunction
 
 function! SetTestFile()
@@ -294,6 +295,8 @@ map <leader>a :call RunTests('spec')<cr>
 " TODO - remove unnecessary whitespaces?
 " TODO - what is <c-o>?
 map <leader>ws :%s/ *$//g<cr><c-o><cr>
+
+autocmd User Rails Rnavcommand fabricator spec/fabricators -suffix=_fabricator.rb -default=model()
 
 " Include user's local vim config
 if filereadable(expand("~/.vimrc.local"))
