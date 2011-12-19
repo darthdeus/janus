@@ -90,8 +90,9 @@ let g:CommandTMaxHeight=20
 nnoremap <leader><leader> <c-^>
 
 " CTags
-map <Leader>rt :!ctags --extra=+f -R *<CR><CR>
-map <C-\> :tnext<CR>
+" TODO - do i need ctags?
+" map <Leader>rt :!ctags --extra=+f -R *<CR><CR>
+" map <C-\> :tnext<CR>
 
 " TODO - what is Gundo?
 " Gundo configuration
