@@ -58,8 +58,6 @@ endfunction
 inoremap <tab> <c-r>=InsertTabWrapper()<cr>
 inoremap <s-tab> <c-n>
 
-" TODO - haha!
-" Seriously, guys. It's not like :W is bound to anything anyway.
 command! W :w
 
 " Status bar
@@ -74,8 +72,8 @@ set winwidth=84
 " We have to have a winheight bigger than we want to set winminheight. But if
 " we set winheight to be huge before winminheight, the winminheight set will
 " fail.
-set winheight=10
-set winminheight=10
+set winheight=5
+set winminheight=5
 set winheight=999
 
 
@@ -86,18 +84,12 @@ let mapleader=","
 let g:CommandTMaxHeight=20
 
 " Switching between active files in a buffer.
-" TODO - what's default behavior here for <leader><leader>?
 nnoremap <leader><leader> <c-^>
 
 " CTags
 " TODO - do i need ctags?
 " map <Leader>rt :!ctags --extra=+f -R *<CR><CR>
 " map <C-\> :tnext<CR>
-
-" TODO - what is Gundo?
-" Gundo configuration
-nmap <F5> :GundoToggle<CR>
-imap <F5> <ESC>:GundoToggle<CR>
 
 " TODO - paste?
 map <silent> <leader>y :<C-u>silent '<,'>w !pbcopy<CR>
@@ -121,6 +113,16 @@ endfunction
 
 " Thorfile, Rakefile, Vagrantfile and Gemfile are Ruby
 au BufRead,BufNewFile {Gemfile,Rakefile,Vagrantfile,Thorfile,config.ru}    set ft=ruby
+
+" Bye Bye arrow keys!
+inoremap <Up>      <NOP>
+inoremap <Down>    <NOP>
+inoremap <Left>    <NOP>
+inoremap <Right>   <NOP>
+noremap <Up>       <NOP>
+noremap <Down>     <NOP>
+noremap <Left>     <NOP>
+noremap <Right>    <NOP>
 
 " md, markdown, and mk are markdown and define buffer-local preview
 au BufRead,BufNewFile *.{md,markdown,mdown,mkd,mkdn} call s:setupMarkup()
@@ -167,10 +169,9 @@ map <leader>ga :CommandTFlush<cr>\|:CommandT app/assets<cr>
 map <leader>gs :CommandTFlush<cr>\|:CommandT app/assets/stylesheets<cr>
 map <leader>gj :CommandTFlush<cr>\|:CommandT app/assets/javascripts<cr>
 
-" TODO - How to implement this?
-" function! RunFile()
-"   :w\|ruby%<CR>
-" endfunction
+function! RunFile()
+   :w\|ruby%<CR>
+endfunction
 
 " Run current file with Ruby
 " TODO - change to run specs when specs file
@@ -289,15 +290,14 @@ map <leader>T :call RunNearestTest()<cr>
 " Run all test files
 map <leader>a :call RunTests('spec')<cr>
 
-" TODO - what happens when I don't do this?
-" GRB: clear the search buffer when hitting return
 :nnoremap <CR> :nohlsearch<CR>/<BS>
 
-" TODO - remove unnecessary whitespaces?
-" TODO - what is <c-o>?
+" remove unnecessary whitespaces?
 map <leader>ws :%s/ *$//g<cr><c-o><cr>
 
 autocmd User Rails Rnavcommand fabricator spec/fabricators -suffix=_fabricator.rb -default=model()
+
+let g:gist_private = 1
 
 " Include user's local vim config
 if filereadable(expand("~/.vimrc.local"))

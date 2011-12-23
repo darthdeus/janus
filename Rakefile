@@ -156,7 +156,7 @@ vim_plugin_task "vim-coffee-script","git://github.com/kchmck/vim-coffee-script.g
 # vim_plugin_task "syntastic",        "git://github.com/scrooloose/syntastic.git"
 # vim_plugin_task "puppet",           "git://github.com/ajf/puppet-vim.git"
 # vim_plugin_task "scala",            "git://github.com/bdd/vim-scala.git"
-# vim_plugin_task "gist-vim",         "git://github.com/mattn/gist-vim.git"
+vim_plugin_task "gist-vim",         "git://github.com/mattn/gist-vim.git"
 # vim_plugin_task "gundo",            "git://github.com/sjl/gundo.vim.git"
 vim_plugin_task "slim",             "git://github.com/bbommarito/vim-slim.git"
 vim_plugin_task "vim-rvm",             "git://github.com/tpope/vim-rvm.git"
