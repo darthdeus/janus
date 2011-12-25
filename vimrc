@@ -68,7 +68,7 @@ set laststatus=2
 " This is likely a bludgeon to solve some other issue, but it works
 set noequalalways
 
-set winwidth=84
+set winwidth=100
 " We have to have a winheight bigger than we want to set winminheight. But if
 " we set winheight to be huge before winminheight, the winminheight set will
 " fail.
@@ -210,7 +210,7 @@ set modeline
 set modelines=10
 
 " Default color scheme
-color ir_black
+color solarized
 
 " Directories for swp files
 set backupdir=~/.vim/backup
