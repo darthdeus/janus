@@ -210,6 +210,7 @@ set modeline
 set modelines=10
 
 " Default color scheme
+color ir_black
 color solarized
 
 " Directories for swp files
