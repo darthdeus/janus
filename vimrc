@@ -304,3 +304,6 @@ let g:gist_private = 1
 if filereadable(expand("~/.vimrc.local"))
   source ~/.vimrc.local
 endif
+
+set exrc
+set secure
