@@ -210,6 +210,7 @@ set modeline
 set modelines=10
 
 " Default color scheme
+" for some reason, ir_black needs to be here first to make solarized work
 color ir_black
 color solarized
 
@@ -233,7 +234,7 @@ set showcmd
 set guioptions-=L
 set guioptions-=r
 
-set guifont=Monaco:h11
+set guifont=Menlo:h14
 
 if has("gui_running")
   " Automatically resize splits when resizing MacVim window
