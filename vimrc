@@ -244,10 +244,9 @@ if has("gui_running")
   " Automatically resize splits when resizing MacVim window
   autocmd VimResized * wincmd =
 
-  " TODO - change these to preferred size
   " GRB: set window size"
-  :set lines=100
-  :set columns=171
+  :set lines=60
+  :set columns=140
 
   " GRB: highlight current line"
   :set cursorline
