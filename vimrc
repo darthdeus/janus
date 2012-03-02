@@ -209,10 +209,14 @@ let g:gist_open_browser_after_post = 1
 set modeline
 set modelines=10
 
+" No more solarized, but let's keep it in here for other servers
+color default
+
 " Default color scheme
 " for some reason, ir_black needs to be here first to make solarized work
-color ir_black
-color solarized
+"color ir_black
+"color solarized
+
 
 " Directories for swp files
 set backupdir=~/.vim/backup
