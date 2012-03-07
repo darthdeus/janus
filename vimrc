@@ -210,7 +210,7 @@ set modeline
 set modelines=10
 
 " No more solarized, but let's keep it in here for other servers
-color default
+color github
 
 " Default color scheme
 " for some reason, ir_black needs to be here first to make solarized work
@@ -248,9 +248,10 @@ if has("gui_running")
   :set lines=60
   :set columns=140
 
-  " GRB: highlight current line"
-  :set cursorline
 endif
+
+" Highlight current line
+set cursorline
 
 function! RunTests(filename)
     " Write the file and run tests for the given filename
