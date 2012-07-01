@@ -44,13 +44,13 @@ support.
 
 0. `for i in ~/.vim ~/.vimrc ~/.gvimrc; do [ -e $i ] && mv $i $i.old;
    done`
-1. `git clone git://github.com/carlhuda/janus.git ~/.vim`
+1. `git clone git://github.com/darthdeus/janus.git ~/.vim`
 2. `cd ~/.vim`
 3. `rake`
 
 or
 
-  `curl https://raw.github.com/carlhuda/janus/master/bootstrap.sh -o - | sh`
+  `curl https://raw.github.com/darthdeus/janus/master/bootstrap.sh -o - | sh`
 
 Note that MacVim and Janus must be compiled using the same version of
 Ruby.  This may cause problems for users of RVM or rbenv.  To solve,
@@ -59,7 +59,7 @@ execute:
     rvm system
     brew uninstall macvim
     brew install macvim
-    curl https://raw.github.com/carlhuda/janus/master/bootstrap.sh -o - | sh
+    curl https://raw.github.com/darthdeus/janus/master/bootstrap.sh -o - | sh
     rvm default
 
 or

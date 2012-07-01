@@ -55,6 +55,7 @@ function! InsertTabWrapper()
         return "\<c-p>"
     endif
 endfunction
+
 inoremap <tab> <c-r>=InsertTabWrapper()<cr>
 inoremap <s-tab> <c-n>
 
@@ -210,11 +211,12 @@ set modeline
 set modelines=10
 
 " No more solarized, but let's keep it in here for other servers
-color github
+" color github
+color Tomorrow-Night
 
 " Default color scheme
 " for some reason, ir_black needs to be here first to make solarized work
-"color ir_black
+" color ir_black
 "color solarized
 
 
