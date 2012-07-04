@@ -94,8 +94,9 @@ set visualbell
 set guioptions-=T
 
 " Default gui color scheme
-color ir_black
-color solarized
+" color ir_black
+" color solarized
+color Tomorrow-Night
 
 " ConqueTerm wrapper
 function StartTerm()

@@ -134,6 +134,9 @@ vim_plugin_task "indent_object",    "git://github.com/michaeljsmith/vim-indent-o
 vim_plugin_task "javascript",       "git://github.com/pangloss/vim-javascript.git"
 vim_plugin_task "nerdtree",         "git://github.com/wycats/nerdtree.git"
 #vim_plugin_task "nerdcommenter",    "git://github.com/ddollar/nerdcommenter.git"
+vim_plugin_task "tcomment_vim",    "git://github.com/tomtom/tcomment_vim.git"
+
+
 vim_plugin_task "surround",         "git://github.com/tpope/vim-surround.git"
 #vim_plugin_task "taglist",          "git://github.com/vim-scripts/taglist.vim.git"
 #vim_plugin_task "vividchalk",       "git://github.com/tpope/vim-vividchalk.git"
@@ -145,11 +148,13 @@ vim_plugin_task "rails",            "git://github.com/tpope/vim-rails.git"
 vim_plugin_task "rspec",            "git://github.com/taq/vim-rspec.git"
 #vim_plugin_task "zoomwin",          "git://github.com/vim-scripts/ZoomWin.git"
 # TODO - might be useful
-#vim_plugin_task "snipmate",         "git://github.com/msanders/snipmate.vim.git"
+vim_plugin_task "snipmate",         "git://github.com/garbas/vim-snipmate.git"
+vim_plugin_task "snipmate-snippets",         "git://github.com/honza/snipmate-snippets.git"
 vim_plugin_task "markdown",         "git://github.com/tpope/vim-markdown.git"
 # vim_plugin_task "align",            "git://github.com/tsaleh/vim-align.git"
 # vim_plugin_task "unimpaired",       "git://github.com/tpope/vim-unimpaired.git"
 # vim_plugin_task "searchfold",       "git://github.com/vim-scripts/searchfold.vim.git"
+
 vim_plugin_task "endwise",          "git://github.com/tpope/vim-endwise.git"
 vim_plugin_task "irblack",          "git://github.com/wgibbs/vim-irblack.git"
 vim_plugin_task "vim-coffee-script","git://github.com/kchmck/vim-coffee-script.git"
