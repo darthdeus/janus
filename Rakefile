@@ -127,15 +127,20 @@ end
 vim_plugin_task "ack.vim",          "git://github.com/mileszs/ack.vim.git"
 vim_plugin_task "color-sampler",    "git://github.com/vim-scripts/Color-Sampler-Pack.git"
 #vim_plugin_task "conque",           "http://conque.googlecode.com/files/conque_1.1.tar.gz"
+# vim_plugin_task "conque",           "git://github.com/rson/vim-conque.git"
+# vim_plugin_task "vim-ruby-conque",  "git://github.com/skwp/vim-ruby-conque.git"
+vim_plugin_task "bundler",          "git://github.com/tpope/vim-bundler.git"
+vim_plugin_task "jade",             "git://github.com/digitaltoad/vim-jade.git"
+
 vim_plugin_task "fugitive",         "git://github.com/tpope/vim-fugitive.git"
 vim_plugin_task "git",              "git://github.com/tpope/vim-git.git"
 vim_plugin_task "haml",             "git://github.com/tpope/vim-haml.git"
-vim_plugin_task "indent_object",    "git://github.com/michaeljsmith/vim-indent-object.git"
+# vim_plugin_task "indent_object",    "git://github.com/michaeljsmith/vim-indent-object.git"
 vim_plugin_task "javascript",       "git://github.com/pangloss/vim-javascript.git"
 vim_plugin_task "nerdtree",         "git://github.com/wycats/nerdtree.git"
 #vim_plugin_task "nerdcommenter",    "git://github.com/ddollar/nerdcommenter.git"
-vim_plugin_task "tcomment_vim",    "git://github.com/tomtom/tcomment_vim.git"
-
+vim_plugin_task "tcomment_vim",     "git://github.com/tomtom/tcomment_vim.git"
+vim_plugin_task "tabular",          "git://github.com/godlygeek/tabular.git"
 
 vim_plugin_task "surround",         "git://github.com/tpope/vim-surround.git"
 #vim_plugin_task "taglist",          "git://github.com/vim-scripts/taglist.vim.git"

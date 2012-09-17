@@ -102,7 +102,7 @@ if has("autocmd")
 endif
 
 function s:setupWrapping()
-  set wrap
+  " set wrap
   set wrapmargin=2
   set textwidth=72
 endfunction
@@ -115,16 +115,16 @@ endfunction
 " Thorfile, Rakefile, Vagrantfile and Gemfile are Ruby
 au BufRead,BufNewFile {Gemfile,Rakefile,Vagrantfile,Thorfile,config.ru}    set ft=ruby
 
-" Bye Bye arrow keys!
-inoremap <Up>      <NOP>
-inoremap <Down>    <NOP>
-inoremap <Left>    <NOP>
-inoremap <Right>   <NOP>
-noremap <Up>       <NOP>
-noremap <Down>     <NOP>
-noremap <Left>     <NOP>
-noremap <Right>    <NOP>
-
+" " Bye Bye arrow keys!
+" inoremap <Up>      <NOP>
+" inoremap <Down>    <NOP>
+" inoremap <Left>    <NOP>
+" inoremap <Right>   <NOP>
+" noremap <Up>       <NOP>
+" noremap <Down>     <NOP>
+" noremap <Left>     <NOP>
+" noremap <Right>    <NOP>
+" 
 " md, markdown, and mk are markdown and define buffer-local preview
 au BufRead,BufNewFile *.{md,markdown,mdown,mkd,mkdn} call s:setupMarkup()
 
@@ -163,12 +163,15 @@ map <leader>gv :CommandTFlush<cr>\|:CommandT app/views<cr>
 map <leader>gc :CommandTFlush<cr>\|:CommandT app/controllers<cr>
 map <leader>gm :CommandTFlush<cr>\|:CommandT app/models<cr>
 map <leader>gh :CommandTFlush<cr>\|:CommandT app/helpers<cr>
+map <leader>gd :CommandTFlush<cr>\|:CommandT app/decorators<cr>
 map <leader>gl :CommandTFlush<cr>\|:CommandT lib<cr>
 map <leader>gt :CommandTFlush<cr>\|:CommandT spec<cr>
-map <leader>gf :CommandTFlush<cr>\|:CommandT features<cr>
 map <leader>ga :CommandTFlush<cr>\|:CommandT app/assets<cr>
 map <leader>gs :CommandTFlush<cr>\|:CommandT app/assets/stylesheets<cr>
 map <leader>gj :CommandTFlush<cr>\|:CommandT app/assets/javascripts<cr>
+
+nmap <C-a> ^
+nmap <C-e> $
 
 function! RunFile()
    :w\|ruby%<CR>
@@ -192,6 +195,49 @@ vmap <C-Up> <C-w><C-k>
 vmap <C-Down> <C-w><C-j>
 vmap <C-Left> <C-w><C-h>
 vmap <C-Right> <C-w><C-l>
+
+map <F1> <Esc>
+
+" TODO - learn these
+inoremap     <C-X><C-@> <C-A>
+" Emacs style mappings
+inoremap          <C-A> <C-O>^
+cnoremap          <C-A> <Home>
+cnoremap     <C-X><C-A> <C-A>
+" If at end of a line of spaces, delete back to the previous line.
+" Otherwise, <Left>
+inoremap <silent> <C-B> <C-R>=getline('.')=~'^\s*$'&&col('.')>strlen(getline('.'))?"0\<Lt>C-D>\<Lt>Esc>kJs":"\<Lt>Left>"<CR>
+cnoremap          <C-B> <Left>
+" If at end of line, decrease indent, else <Del>
+inoremap <silent> <C-D> <C-R>=col('.')>strlen(getline('.'))?"\<Lt>C-D>":"\<Lt>Del>"<CR>
+cnoremap          <C-D> <Del>
+" If at end of line, fix indent, else <Right>
+inoremap <silent> <C-F> <C-R>=col('.')>strlen(getline('.'))?"\<Lt>C-F>":"\<Lt>Right>"<CR>
+inoremap          <C-E> <End>
+cnoremap          <C-F> <Right>
+noremap!          <M-a> <C-O>(
+map!              <M-b> <S-Left>
+noremap!          <M-d> <C-O>dw
+noremap!          <M-e> <C-O>)
+map!              <M-f> <S-Right>
+noremap!          <M-h> <C-W>
+noremap           <M-l> guiww
+noremap           <M-u> gUiww
+noremap!          <M-l> <Esc>guiw`]a
+noremap!          <M-u> <Esc>gUiw`]a
+noremap!          <M-{> <C-O>{
+noremap!          <M-}> <C-O>}
+
+if !has("gui_running")
+  silent! exe "set <S-Left>=\<Esc>b"
+  silent! exe "set <S-Right>=\<Esc>f"
+  silent! exe "set <F31>=\<Esc>d"
+  map! <F31> <M-d>
+endif
+
+nmap Q <NOP>
+
+
 
 " Enable syntastic syntax checking
 let g:syntastic_enable_signs=1
