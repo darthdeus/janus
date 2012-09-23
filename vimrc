@@ -228,12 +228,13 @@ noremap!          <M-u> <Esc>gUiw`]a
 noremap!          <M-{> <C-O>{
 noremap!          <M-}> <C-O>}
 
-if !has("gui_running")
-  silent! exe "set <S-Left>=\<Esc>b"
-  silent! exe "set <S-Right>=\<Esc>f"
-  silent! exe "set <F31>=\<Esc>d"
-  map! <F31> <M-d>
-endif
+" Need to investigate why this causes <Esc>b to stop working
+" if !has("gui_running")
+"   silent! exe "set <S-Left>=\<Esc>b"
+"   silent! exe "set <S-Right>=\<Esc>f"
+"   silent! exe "set <F31>=\<Esc>d"
+"   map! <F31> <M-d>
+" endif
 
 nmap Q <NOP>
 

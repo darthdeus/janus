@@ -169,7 +169,7 @@ vim_plugin_task "vim-coffee-script","git://github.com/kchmck/vim-coffee-script.g
 # vim_plugin_task "syntastic",        "git://github.com/scrooloose/syntastic.git"
 # vim_plugin_task "puppet",           "git://github.com/ajf/puppet-vim.git"
 # vim_plugin_task "scala",            "git://github.com/bdd/vim-scala.git"
-vim_plugin_task "gist-vim",         "git://github.com/mattn/gist-vim.git"
+# vim_plugin_task "gist-vim",         "git://github.com/mattn/gist-vim.git"
 # vim_plugin_task "gundo",            "git://github.com/sjl/gundo.vim.git"
 vim_plugin_task "slim",             "git://github.com/bbommarito/vim-slim.git"
 vim_plugin_task "vim-rvm",          "git://github.com/tpope/vim-rvm.git"
@@ -195,17 +195,17 @@ vim_plugin_task "command_t",        "http://s3.wincent.com/command-t/releases/co
   end
 end
 
-vim_plugin_task "pep8" do
-  File.open(File.expand_path("../ftplugin/python_pep8.vim", __FILE__), "w") do |file|
-    file.puts <<-VIM.gsub(/^ +/, "")
-      " make Python follow PEP8 ( http://www.python.org/dev/peps/pep-0008/ )
-      setlocal softtabstop=4
-      setlocal tabstop=4
-      setlocal shiftwidth=4
-      setlocal textwidth=79
-    VIM
-  end
-end
+# vim_plugin_task "pep8" do
+#   File.open(File.expand_path("../ftplugin/python_pep8.vim", __FILE__), "w") do |file|
+#     file.puts <<-VIM.gsub(/^ +/, "")
+#       " make Python follow PEP8 ( http://www.python.org/dev/peps/pep-0008/ )
+#       setlocal softtabstop=4
+#       setlocal tabstop=4
+#       setlocal shiftwidth=4
+#       setlocal textwidth=79
+#     VIM
+#   end
+# end
 
 vim_plugin_task "make_tabs" do
   File.open(File.expand_path("../ftplugin/make_tabs.vim", __FILE__), "w") do |file|
@@ -253,11 +253,13 @@ vim_plugin_task "mustache" do
     file << "au BufNewFile,BufRead *.mustache        setf mustache"
   end
 end
+
 vim_plugin_task "arduino","git://github.com/vim-scripts/Arduino-syntax-file.git" do
   File.open(File.expand_path('../ftdetect/arduino.vim', __FILE__), 'w') do |file|
     file << "au BufNewFile,BufRead *.pde             setf arduino"
   end
 end
+
 vim_plugin_task "vwilight" do
   sh "curl https://raw.github.com/gist/796172/724c7ca237a7f6b8d857c4ac2991cfe5ffb18087 > colors/vwilight.vim"
 end
