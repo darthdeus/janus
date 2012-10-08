@@ -306,8 +306,9 @@ function! RunTests(filename)
     " Write the file and run tests for the given filename
     :w
     :silent !echo;echo;echo;echo;echo
-"    exec ":!bundle exec rspec " . a:filename
-    exec ":!./script/test " . a:filename
+   exec ":!zeus rspec " . a:filename
+   " exec ":!bundle exec rspec " . a:filename
+   " exec ":!./script/test " . a:filename
 endfunction
 
 function! SetTestFile()
@@ -361,3 +362,4 @@ endif
 
 set exrc
 set secure
+
